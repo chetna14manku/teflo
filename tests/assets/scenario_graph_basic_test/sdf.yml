@@ -1,0 +1,11 @@
+---
+
+name: sdf
+description: "scenario for testing"
+provision:
+  - name: {{ firstkey | default('test') }}
+    provisioner: openstack
+
+  - name: {{ secondkey | default('test') }}
+    provisioner: openstack
+    

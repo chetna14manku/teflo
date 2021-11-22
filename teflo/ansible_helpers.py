@@ -47,6 +47,7 @@ from .exceptions import AnsibleServiceError
 from ansible.parsing.vault import VaultSecret
 from .exceptions import AnsibleVaultError
 from ._compat import RawConfigParser, VaultLib, ansible_ver, is_py2
+from .constants import EXTRA_VARS_FILES
 
 LOG = getLogger(__name__)
 
@@ -414,6 +415,7 @@ class AnsibleService(object):
         if self.config.get('ANSIBLE_EXTRA_VARS_FILES') and \
                 self.config.get('ANSIBLE_EXTRA_VARS_FILES').lower() == 'true':
             var_files_list = check_for_var_file(self.config)
+            var_files_list.append(EXTRA_VARS_FILES)
             file = extra_vars.get('file')
             if file:
                 if not isinstance(file, str):
